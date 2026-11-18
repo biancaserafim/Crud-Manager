@@ -11,6 +11,6 @@
 		</c:forEach>
 
 		<li class="${currentPage == totalPages ? 'disabled' : ''}">
-			<a href="?page=${currentPage + 1}">Prï¿½ximo &gt;</a>
+			<a href="?page=${currentPage + 1}">Próximo &gt;</a>
 		</li>
 	</ul>
