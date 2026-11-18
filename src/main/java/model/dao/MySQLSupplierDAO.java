@@ -98,6 +98,47 @@ public class MySQLSupplierDAO implements SupplierDAO {
 	}
 
 	@Override
+	public List<Supplier> search(String search) throws ModelException {
+		DBHandler db = new DBHandler();
+
+		List<Supplier> suppliers = new ArrayList<Supplier>();
+
+		String sqlQuery = "SELECT s.id AS supplier_id, s.name, s.email, s.phone, "
+				+ " s.payment_term, s.user_id, "
+				+ " u.nome AS user_name, u.sexo, u.email AS user_email "
+				+ " FROM suppliers s "
+				+ " INNER JOIN users u "
+				+ " ON s.user_id = u.id "
+				+ " WHERE s.name LIKE ? OR s.email LIKE ? "
+				+ " OR s.phone LIKE ? OR u.nome LIKE ?;";
+
+		db.prepareStatement(sqlQuery);
+		db.setString(1, "%" + search + "%");
+		db.setString(2, "%" + search + "%");
+		db.setString(3, "%" + search + "%");
+		db.setString(4, "%" + search + "%");
+		db.executeQuery();
+
+		while (db.next()) {
+			User user = new User(db.getInt("user_id"));
+			user.setName(db.getString("user_name"));
+			user.setGender(db.getString("sexo"));
+			user.setEmail(db.getString("user_email"));
+
+			Supplier supplier = new Supplier(db.getInt("supplier_id"));
+			supplier.setName(db.getString("name"));
+			supplier.setEmail(db.getString("email"));
+			supplier.setPhone(db.getString("phone"));
+			supplier.setPaymentTerm(db.getString("payment_term"));
+			supplier.setUser(user);
+
+			suppliers.add(supplier);
+		}
+
+		return suppliers;
+	}
+
+	@Override
 	public Supplier findById(int id) throws ModelException {
 		DBHandler db = new DBHandler();
 

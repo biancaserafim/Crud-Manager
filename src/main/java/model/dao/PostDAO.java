@@ -13,6 +13,6 @@ public interface PostDAO {
 	boolean delete(Post post) throws ModelException;
 
 	List<Post> listAll() throws ModelException;
-
+	List<Post> search(String search) throws ModelException;
 	Post findById(int id) throws ModelException;
 }

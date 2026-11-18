@@ -106,8 +106,14 @@ public class ProductsController extends HttpServlet {
 		ProductDAO dao = DAOFactory.createDAO(ProductDAO.class);
 
 		List<Product> products = null;
+		String search = req.getParameter("search");
+
 		try {
-			products = dao.listAll();
+			if (search != null && !search.trim().isEmpty()) {
+				products = dao.search(search.trim());
+			} else {
+				products = dao.listAll();
+			}
 		} catch (ModelException e) {
 			// Log no servidor
 			e.printStackTrace();

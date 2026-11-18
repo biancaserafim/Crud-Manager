@@ -10,5 +10,6 @@ public interface ProductDAO {
 	boolean update(Product product) throws ModelException;
 	boolean delete(Product product) throws ModelException;
 	List<Product> listAll() throws ModelException;
+	List<Product> search(String search) throws ModelException;
 	Product findById(int id) throws ModelException;
 }

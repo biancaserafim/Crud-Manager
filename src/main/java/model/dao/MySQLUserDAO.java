@@ -101,6 +101,30 @@ public class MySQLUserDAO implements UserDAO {
 
 		return users;
 	}
+	
+
+	@Override
+	public List<User> search(String search) throws ModelException {
+
+		DBHandler db = new DBHandler();
+
+		List<User> users = new ArrayList<User>();
+
+		String sqlQuery = "SELECT * FROM users WHERE nome LIKE ? OR email LIKE ?";
+
+		db.prepareStatement(sqlQuery);
+		db.setString(1, "%" + search + "%");
+		db.setString(2, "%" + search + "%");
+		db.executeQuery();
+
+		while (db.next()) {
+			User u = createUser(db);
+			users.add(u);
+		}
+
+		return users;
+	}
+
 
 	@Override
 	public User findById(int id) throws ModelException {

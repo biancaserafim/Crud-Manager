@@ -32,16 +32,21 @@
 							</div>
 
 							<div class="col-md-6">
-								<div class="input-group h2">
-									<input name="data[search]" class="form-control" id="search" type="text"
-										placeholder="Pesquisar posts">
-									<span class="input-group-btn">
-										<button class="btn btn-danger" type="submit">
-											<span class="glyphicon glyphicon-search"></span>
-										</button>
-									</span>
-								</div>
-							</div>
+    <form method="get" action="${pageContext.request.contextPath}/posts">
+        <div class="input-group h2">
+            <input name="search" class="form-control" id="search"
+                type="text"
+                placeholder="Pesquisar posts"
+                value="${param.search}">
+
+            <span class="input-group-btn">
+                <button class="btn btn-danger" type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </form>
+</div>
 
 							<div class="col-md-3">
 								<a href="/crud-manager/post/form" class="btn btn-danger pull-right h2"><span
@@ -65,6 +70,14 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:if test="${empty posts and not empty param.search}">
+  								  <tr>
+    							    <td colspan="5" class="text-center">
+          								  Nenhum post encontrado.
+       										</td>
+   											 </tr>
+												</c:if>
+									
 										<c:forEach var="post" items="${posts}">
 											<tr>
 												<td>${post.getPostDate()}</td>

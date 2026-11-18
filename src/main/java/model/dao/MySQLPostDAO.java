@@ -6,7 +6,6 @@ import java.util.List;
 import model.ModelException;
 import model.Post;
 import model.User;
-
 public class MySQLPostDAO implements PostDAO {
 
 	@Override
@@ -82,6 +81,32 @@ public class MySQLPostDAO implements PostDAO {
 		}
 
 		return posts;
+	}
+	@Override
+	public List<Post> search(String search) throws ModelException {
+
+	    DBHandler db = new DBHandler();
+
+	    List<Post> posts = new ArrayList<Post>();
+
+	    String sqlQuery = " SELECT u.id AS user_id, p.*, "
+	            + " p.post_date "
+	            + " FROM users u "
+	            + " INNER JOIN posts p "
+	            + " ON u.id = p.user_id "
+	            + " WHERE p.content LIKE ? "
+	            + " ORDER BY content";
+
+	    db.prepareStatement(sqlQuery);
+	    db.setString(1, "%" + search + "%");
+	    db.executeQuery();
+
+	    while (db.next()) {
+	        Post p = createPost(db);
+	        posts.add(p);
+	    }
+
+	    return posts;
 	}
 
 	@Override

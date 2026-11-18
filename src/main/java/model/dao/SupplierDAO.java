@@ -10,5 +10,6 @@ public interface SupplierDAO {
 	boolean update(Supplier supplier) throws ModelException;
 	boolean delete(Supplier supplier) throws ModelException;
 	List<Supplier> listAll() throws ModelException;
+	List<Supplier> search(String search) throws ModelException;
 	Supplier findById(int id) throws ModelException;
 }

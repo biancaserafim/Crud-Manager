@@ -67,8 +67,14 @@ public class SuppliersController extends HttpServlet {
 		SupplierDAO dao = DAOFactory.createDAO(SupplierDAO.class);
 
 		List<Supplier> suppliers = null;
+		String search = req.getParameter("search");
+
 		try {
-			suppliers = dao.listAll();
+			if (search != null && !search.trim().isEmpty()) {
+				suppliers = dao.search(search.trim());
+			} else {
+				suppliers = dao.listAll();
+			}
 		} catch (ModelException e) {
 			// Log no servidor
 			e.printStackTrace();

@@ -10,6 +10,7 @@ public interface UserDAO {
 	boolean update(User user) throws ModelException;
 	boolean delete(User user) throws ModelException;
 	List<User> listAll() throws ModelException;
+	List<User> search(String search) throws ModelException;
 	User findById(int id) throws ModelException;
 	User authenticate(String email, String password) throws ModelException;
 }

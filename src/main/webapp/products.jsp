@@ -25,15 +25,17 @@
 						</div>
 
 						<div class="col-md-6">
-							<div class="input-group h2">
-								<input name="data[search]" class="form-control" id="search" type="text"
-									placeholder="Pesquisar produtos">
-								<span class="input-group-btn">
-									<button class="btn btn-danger" type="submit">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-								</span>
-							</div>
+							<form method="get" action="${pageContext.request.contextPath}/products">
+								<div class="input-group h2">
+									<input name="search" class="form-control" id="search" type="text"
+										placeholder="Pesquisar produtos" value="${param.search}">
+									<span class="input-group-btn">
+										<button class="btn btn-danger" type="submit">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+								</div>
+							</form>
 						</div>
 
 						<div class="col-md-3">
@@ -59,6 +61,14 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:if test="${empty products and not empty param.search}">
+										<tr>
+											<td colspan="7" class="text-center">
+												Nenhum produto encontrado.
+											</td>
+										</tr>
+									</c:if>
+
 									<c:forEach var="prod" items="${products}">
 										<tr>
 											<td>${prod.getName()}</td>

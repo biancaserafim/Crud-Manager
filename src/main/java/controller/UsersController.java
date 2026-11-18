@@ -1,3 +1,4 @@
+
 package controller;
 
 import java.io.IOException;
@@ -34,6 +35,12 @@ public class UsersController extends HttpServlet {
 			case "/crud-manager/user/update": {
 				listUsers(req);
 				User user = loadUser(req);
+
+				if (user == null) {
+					resp.sendRedirect(req.getContextPath() + "/users");
+					return;
+				}
+
 				req.setAttribute("user", user);
 				req.setAttribute("action", "update");
 				ControllerUtil.forward(req, resp, "/form-user.jsp");
@@ -101,21 +108,28 @@ public class UsersController extends HttpServlet {
 	}
 
 	private void listUsers(HttpServletRequest req) {
-		UserDAO dao = DAOFactory.createDAO(UserDAO.class);
+	    UserDAO dao = DAOFactory.createDAO(UserDAO.class);
 
-		List<User> users = null;
-		try {
-			users = dao.listAll();
-		} catch (ModelException e) {
-			// Log no servidor
-			e.printStackTrace();
-		}
-		if (users != null) {
-			users = ControllerUtil.paginate(req, users);
-			req.setAttribute("users", users);
+	    List<User> users = null;
+	    String search = req.getParameter("search");
 
-		}
+	    try {
+	        if (search != null && !search.trim().isEmpty()) {
+	            users = dao.search(search.trim());
+	        } else {
+	            users = dao.listAll();
+	        }
+	    } catch (ModelException e) {
+	        // Log no servidor
+	        e.printStackTrace();
+	    }
+
+	    if (users != null) {
+	        users = ControllerUtil.paginate(req, users);
+	        req.setAttribute("users", users);
+	    }
 	}
+	
 
 	private void insertUser(HttpServletRequest req, HttpServletResponse resp) {
 		String userName = req.getParameter("name");
@@ -124,6 +138,7 @@ public class UsersController extends HttpServlet {
 		String userPassword = req.getParameter("password");
 
 		User user = new User();
+
 		user.setName(userName);
 		user.setGender(userGender);
 		user.setEmail(userEMail);
@@ -161,6 +176,11 @@ public class UsersController extends HttpServlet {
 		String userPassword = req.getParameter("password");
 
 		User user = loadUser(req);
+
+		if (user == null) {
+			return;
+		}
+
 		user.setName(userName);
 		user.setGender(userGender);
 		user.setEmail(userEMail);

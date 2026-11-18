@@ -187,20 +187,25 @@ public class PostsController extends HttpServlet {
 	}
 
 	private void listPosts(HttpServletRequest req) {
-		PostDAO dao = DAOFactory.createDAO(PostDAO.class);
+	    PostDAO dao = DAOFactory.createDAO(PostDAO.class);
 
-		List<Post> posts = null;
-		try {
-			posts = dao.listAll();
-		} catch (ModelException e) {
-			// Log no servidor
-			e.printStackTrace();
-		}
+	    List<Post> posts = null;
+	    String search = req.getParameter("search");
 
-		if (posts != null) {
-			posts = ControllerUtil.paginate(req, posts);
-			req.setAttribute("posts", posts);
+	    try {
+	        if (search != null && !search.trim().isEmpty()) {
+	            posts = dao.search(search.trim());
+	        } else {
+	            posts = dao.listAll();
+	        }
+	    } catch (ModelException e) {
+	        // Log no servidor
+	        e.printStackTrace();
+	    }
 
-		}
+	    if (posts != null) {
+	        posts = ControllerUtil.paginate(req, posts);
+	        req.setAttribute("posts", posts);
+	    }
 	}
 }
