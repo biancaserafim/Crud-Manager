@@ -83,7 +83,7 @@
 
 					<div id="bottom" class="row">
 						<div class="col-md-12">
-						<%@include file="pagination.jsp" %>
+							<%@include file="pagination.jsp" %>
 						</div>
 					</div>
 				</div>

@@ -21,10 +21,11 @@
 				<li><a href="${pageContext.request.contextPath}/users"><span
 							class="glyphicon glyphicon-user"></span><strong>&nbsp;Usuários</strong></a></li>
 				<li><a href="${pageContext.request.contextPath}/posts"><span
-    class="glyphicon glyphicon-pencil"></span><strong>&nbsp;Posts</strong></a></li>
+							class="glyphicon glyphicon-pencil"></span><strong>&nbsp;Posts</strong></a></li>
 				<li><a href="${pageContext.request.contextPath}/companies"><span
 							class="glyphicon glyphicon-tower"></span><strong>&nbsp;Empresas</strong></a></li>
-				<li><a href="${pageContext.request.contextPath}/suppliers"><span class="glyphicon glyphicon-transfer"></span><strong>&nbsp;Fornecedores</strong></a>
+				<li><a href="${pageContext.request.contextPath}/suppliers"><span
+							class="glyphicon glyphicon-transfer"></span><strong>&nbsp;Fornecedores</strong></a>
 				</li>
 				<li><a href="${pageContext.request.contextPath}/products"><span
 							class="glyphicon glyphicon-shopping-cart"></span><strong>&nbsp;Produtos</strong></a></li>
@@ -35,7 +36,8 @@
 						<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;Dados cadastrais</a></li>
-						<li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sair</a></li>
+						<li><a href="${pageContext.request.contextPath}/logout"><span
+									class="glyphicon glyphicon-log-out"></span>&nbsp;Sair</a></li>
 					</ul>
 				</li>
 			</ul>

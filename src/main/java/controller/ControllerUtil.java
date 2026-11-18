@@ -61,6 +61,7 @@ public class ControllerUtil {
 			return null;
 		}
 	}
+
 	private static final int PAGE_SIZE = 5;
 
 	public static <T> List<T> paginate(HttpServletRequest req, List<T> list) {
@@ -72,10 +73,13 @@ public class ControllerUtil {
 		}
 
 		int totalPages = (int) Math.ceil((double) list.size() / PAGE_SIZE);
-		if (totalPages == 0) totalPages = 1;
+		if (totalPages == 0)
+			totalPages = 1;
 
-		if (page < 1) page = 1;
-		if (page > totalPages) page = totalPages;
+		if (page < 1)
+			page = 1;
+		if (page > totalPages)
+			page = totalPages;
 
 		int start = (page - 1) * PAGE_SIZE;
 		int end = Math.min(start + PAGE_SIZE, list.size());

@@ -30,7 +30,8 @@
 							<select id="user" class="form-control selectpicker" name="user" required
 								oninvalid="this.setCustomValidity('Por favor, informe o usuário.')"
 								oninput="setCustomValidity('')">
-<option value="" disabled <c:if test="${empty post}">selected</c:if>>Selecione um usuário</option>						
+								<option value="" disabled <c:if test="${empty post}">selected</c:if>>Selecione um
+									usuário</option>
 								<c:forEach var="user" items="${users}">
 									<option value="${user.getId()}" ${post.getUser().getId()==user.getId() ? "selected"
 										: "" }>
@@ -52,7 +53,7 @@
 			</div>
 
 			<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+			<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	</body>
 
 	</html>

@@ -6,11 +6,11 @@ public class User {
 	private String gender;
 	private String email;
 	private String password;
-	
+
 	public User() {
 		this(0);
 	}
-	
+
 	public User(int id) {
 
 		this.id = id;
@@ -27,7 +27,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

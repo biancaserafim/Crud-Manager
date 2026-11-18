@@ -10,12 +10,15 @@ public class Product {
 	private String unit;
 	private Date expirationDate;
 	private Supplier supplier;
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public BigDecimal getPrice() {
 		return price;
 	}
@@ -23,31 +26,39 @@ public class Product {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
+
 	public String getUnit() {
 		return unit;
 	}
+
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
+
 	public Date getExpirationDate() {
 		return expirationDate;
 	}
+
 	public void setExpirationDate(Date expirationDate) {
 		this.expirationDate = expirationDate;
 	}
+
 	public Supplier getSupplier() {
 		return supplier;
 	}
+
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
+
 	public int getId() {
 		return id;
 	}
-	
-	public Product() {}
+
+	public Product() {
+	}
 
 	public Product(int id) {
-	    this.id = id;
+		this.id = id;
 	}
 }

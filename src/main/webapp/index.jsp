@@ -17,84 +17,86 @@
 						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 						${message}
 					</div>
-<c:if test="${showHome}">
-    <h3>Olá, ${loggedUser.name}!</h3>
-    <p>Bem-vindo ao CRUD Manager! Aqui você pode gerenciar seus fornecedores e produtos.</p>
+					<c:if test="${showHome}">
+						<h3>Olá, ${loggedUser.name}!</h3>
+						<p>Bem-vindo ao CRUD Manager! Aqui você pode gerenciar seus fornecedores e produtos.</p>
 
 
 
-    <hr />
-</c:if>
-					<div id="top" class="row">
-						<div class="col-md-3">
-							<h3>Posts</h3>
-						</div>
+						<hr />
+					</c:if>
+					<c:if test="${not showHome}">
+						<div id="top" class="row">
+							<div class="col-md-3">
+								<h3>Posts</h3>
+							</div>
 
-						<div class="col-md-6">
-							<div class="input-group h2">
-								<input name="data[search]" class="form-control" id="search" type="text"
-									placeholder="Pesquisar posts">
-								<span class="input-group-btn">
-									<button class="btn btn-danger" type="submit">
-										<span class="glyphicon glyphicon-search"></span>
-									</button>
-								</span>
+							<div class="col-md-6">
+								<div class="input-group h2">
+									<input name="data[search]" class="form-control" id="search" type="text"
+										placeholder="Pesquisar posts">
+									<span class="input-group-btn">
+										<button class="btn btn-danger" type="submit">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</span>
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<a href="/crud-manager/post/form" class="btn btn-danger pull-right h2"><span
+										class="glyphicon glyphicon-plus" /></span> Post</a>
 							</div>
 						</div>
 
-						<div class="col-md-3">
-							<a href="/crud-manager/post/form" class="btn btn-danger pull-right h2"><span
-									class="glyphicon glyphicon-plus" /></span> Post</a>
-						</div>
-					</div>
+						<hr />
 
-					<hr />
-
-					<div id="list" class="row">
-						<div class="table-responsive col-md-12">
-							<table class="table table-striped table-hover">
-								<thead>
-									<tr>
-
-										<th>Data</th>
-										<th>Conteúdo</th>
-										<th>Usuário</th>
-										<th>Editar</th>
-										<th>Excluir</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="post" items="${posts}">
+						<div id="list" class="row">
+							<div class="table-responsive col-md-12">
+								<table class="table table-striped table-hover">
+									<thead>
 										<tr>
-											<td>${post.getPostDate()}</td>
-											<td>${post.getContent()}</td>
-											<td>${post.getUser().getName()}</td>
-											<td class="actions">
-												<a class="btn btn-info btn-xs"
-													href="${pageContext.request.contextPath}/post/update?postId=${post.getId()}">
-													<span class="glyphicon glyphicon-edit"></span>
-												</a>
-											</td>
-											<td class="actions">
-												<a class="btn btn-danger btn-xs modal-remove"
-													data-post-id="${post.getId()}"
-													data-post-content="${post.getContent()}" data-toggle="modal"
-													data-target="#delete-modal" href="#"><span
-														class="glyphicon glyphicon-trash"></span></a>
-											</td>
+
+											<th>Data</th>
+											<th>Conteúdo</th>
+											<th>Usuário</th>
+											<th>Editar</th>
+											<th>Excluir</th>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										<c:forEach var="post" items="${posts}">
+											<tr>
+												<td>${post.getPostDate()}</td>
+												<td>${post.getContent()}</td>
+												<td>${post.getUser().getName()}</td>
+												<td class="actions">
+													<a class="btn btn-info btn-xs"
+														href="${pageContext.request.contextPath}/post/update?postId=${post.getId()}">
+														<span class="glyphicon glyphicon-edit"></span>
+													</a>
+												</td>
+												<td class="actions">
+													<a class="btn btn-danger btn-xs modal-remove"
+														data-post-id="${post.getId()}"
+														data-post-content="${post.getContent()}" data-toggle="modal"
+														data-target="#delete-modal" href="#"><span
+															class="glyphicon glyphicon-trash"></span></a>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 
+							</div>
 						</div>
-					</div>
 
-					<div id="bottom" class="row">
-						<div class="col-md-12">
-						<%@include file="pagination.jsp" %>
+						<div id="bottom" class="row">
+							<div class="col-md-12">
+								<%@include file="pagination.jsp" %>
+							</div>
 						</div>
-					</div>
+					</c:if>
 				</div>
 
 				<script type="text/javascript" src="js/jquery.min.js"></script>

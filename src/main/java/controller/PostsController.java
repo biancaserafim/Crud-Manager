@@ -28,9 +28,9 @@ public class PostsController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getRequestURI();
 		if (action.equals(req.getContextPath()) ||
-			    action.equals(req.getContextPath() + "/")) {
-			    req.setAttribute("showHome", true);
-			}
+				action.equals(req.getContextPath() + "/")) {
+			req.setAttribute("showHome", true);
+		}
 
 		switch (action) {
 			case "/crud-manager/post/form": {
@@ -48,16 +48,16 @@ public class PostsController extends HttpServlet {
 				break;
 			}
 			default:
-			    if (action.equals(req.getContextPath()) ||
-			        action.equals(req.getContextPath() + "/")) {
-			        req.setAttribute("showHome", true);
-			    }
+				if (action.equals(req.getContextPath()) ||
+						action.equals(req.getContextPath() + "/")) {
+					req.setAttribute("showHome", true);
+				}
 
-			    listPosts(req);
+				listPosts(req);
 
-			    ControllerUtil.transferSessionMessagesToRequest(req);
+				ControllerUtil.transferSessionMessagesToRequest(req);
 
-			    ControllerUtil.forward(req, resp, "/index.jsp");
+				ControllerUtil.forward(req, resp, "/index.jsp");
 		}
 	}
 
@@ -200,7 +200,7 @@ public class PostsController extends HttpServlet {
 		if (posts != null) {
 			posts = ControllerUtil.paginate(req, posts);
 			req.setAttribute("posts", posts);
-		
+
 		}
 	}
 }

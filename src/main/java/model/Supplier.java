@@ -1,14 +1,14 @@
 package model;
 
 public class Supplier {
-    private int id;
-    private String name;
-    private String email;
-    private String phone;
-    private String paymentTerm;
-    private User user;
+	private int id;
+	private String name;
+	private String email;
+	private String phone;
+	private String paymentTerm;
+	private User user;
 
-    public String getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -52,9 +52,10 @@ public class Supplier {
 		return id;
 	}
 
-	public Supplier() {}
+	public Supplier() {
+	}
 
-    public Supplier(int id) {
-        this.id = id;
-    }
+	public Supplier(int id) {
+		this.id = id;
+	}
 }

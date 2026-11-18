@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
 		switch (action) {
 			case "/crud-manager/login": {
 				if (login(req)) {
-					ControllerUtil.redirect(resp, req.getContextPath() + "/posts");
+					ControllerUtil.redirect(resp, req.getContextPath() + "/");
 					return;
 				}
 				break;

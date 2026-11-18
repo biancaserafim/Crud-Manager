@@ -24,7 +24,7 @@
 
                     <div class="row">
 
-                     <div class="form-group col-md-6">
+                        <div class="form-group col-md-6">
                             <label for="name">Nome</label>
                             <input type="text" class="form-control" id="name" name="name" value="${supplier.getName()}"
                                 placeholder="Nome do fornecedor" required>
@@ -115,8 +115,8 @@
                 </form>
 
             </div>
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     </body>
 
     </html>
